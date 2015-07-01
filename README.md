@@ -7,7 +7,9 @@
 
 Install
 -------
-Use the included Makefile to perform a site installation.
+The source for the Sundown shared library and the Sundown-guile package are both contained in this reposity.  The only external dependency is Guile itself.
+
+Use the included Makefile to perform a site installation. You may need to specify the location of your Guile header files.
 
 By default, the shared lib will be installed in `/use/local/lib`.  Edit the Makefile to change this.
 
