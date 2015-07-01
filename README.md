@@ -17,10 +17,17 @@ Usage
 ------
 Using the library from Guile is easy and straight-forward:
 
-	scheme@(guile-user)> (use-modules (sundown markdown))
-	scheme@(guile-user)> (markdown "Hello, world!")
-	$1 = "<p>Hello, world!</p>\n"
-	scheme@(guile-user)> 
+    scheme@(guile-user)> (use-modules (sundown markdown))
+    scheme@(guile-user)> (markdown "Hello, world!")
+    $42 = "<p>Hello, world!</p>\n"
+    
+    scheme@(guile-user)> (define who "world")
+    scheme@(guile-user)> (md "1. Hello, " who "!")
+    $43 = "<ol>\n<li>Hello,  world !</li>\n</ol>\n"
+    
+    scheme@(guile-user)> (format/md #t "#Hello, ~a!" 'world)
+    <h1>Hello, world!</h1>
+    $44 = #t
 
 Credits
 -------
