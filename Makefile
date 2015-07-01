@@ -19,7 +19,8 @@ DEPDIR=depends
 # "Machine-dependant" options
 #MFLAGS=-fPIC
 
-CFLAGS=-c -g -O3 -fPIC -Wall -Werror -Wsign-compare -Isrc -Ihtml -I/usr/local/include/guile/2.0
+CFLAGS=-c -g -O3 -fPIC -Wall -Werror -Wsign-compare -Isrc -Ihtml \
+       -I/usr/local/include/guile/2.0 -I/usr/include/guile/2.0
 LDFLAGS=-g -O3 -Wall -Werror -lguile-2.0
 CC=gcc
 LIB_INSTALL_DIR=/usr/local/lib
@@ -37,12 +38,13 @@ SUNDOWN_SRC=\
 	html/houdini_html_e.o \
 	html/houdini_href_e.o
 
+all:		libsundown.so html_blocks
+
 install:	all
 	mkdir -p $(GUILE_SITE_DIR)/sundown
 	cp markdown.scm $(GUILE_SITE_DIR)/sundown
 	cp *.so* $(LIB_INSTALL_DIR)
 
-all:		libsundown.so html_blocks
 
 .PHONY:		all clean
 
