@@ -11,9 +11,7 @@ The source for the Sundown shared library and the Sundown-guile package are both
 
 Use the included Makefile to perform a site installation. You may need to specify the location of your Guile header files.
 
-By default, the shared lib will be installed in `/use/local/lib`.  Edit the Makefile to change this.
-
-The guile package will be installed in the proper guile site directory.
+The guile package, including the libsundown-guile shared library, will be installed in the proper guile site directory.
 
 Usage
 ------

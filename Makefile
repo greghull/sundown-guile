@@ -23,7 +23,6 @@ CFLAGS=-c -g -O3 -fPIC -Wall -Werror -Wsign-compare -Isrc -Ihtml \
        -I/usr/local/include/guile/2.0 -I/usr/include/guile/2.0
 LDFLAGS=-g -O3 -Wall -Werror -lguile-2.0
 CC=gcc
-LIB_INSTALL_DIR=/usr/local/lib
 GUILE_SITE_DIR=$(shell guile -c "(display (%site-dir))")
 
 
@@ -38,31 +37,23 @@ SUNDOWN_SRC=\
 	html/houdini_html_e.o \
 	html/houdini_href_e.o
 
-all:		libsundown.so html_blocks
+all:		libsundown-guile.so html_blocks
 
 install:	all
 	mkdir -p $(GUILE_SITE_DIR)/sundown
 	cp markdown.scm $(GUILE_SITE_DIR)/sundown
-	cp *.so* $(LIB_INSTALL_DIR)
+	cp *.so.1 *.so $(GUILE_SITE_DIR)/sundown
 
 
 .PHONY:		all clean
 
 # libraries
 
-libsundown.so:	libsundown.so.1
+libsundown-guile.so:	libsundown-guile.so.1
 	ln -f -s $^ $@
 
-libsundown.so.1: $(SUNDOWN_SRC)
+libsundown-guile.so.1: $(SUNDOWN_SRC)
 	$(CC) $(LDFLAGS) -shared -Wl $^ -o $@
-
-# executables
-
-sundown:	examples/sundown.o $(SUNDOWN_SRC)
-	$(CC) $(LDFLAGS) $^ -o $@
-
-smartypants: examples/smartypants.o $(SUNDOWN_SRC)
-	$(CC) $(LDFLAGS) $^ -o $@
 
 # perfect hashing
 html_blocks: src/html_blocks.h
@@ -74,7 +65,7 @@ src/html_blocks.h: html_block_names.txt
 # housekeeping
 clean:
 	rm -f src/*.o html/*.o examples/*.o
-	rm -f libsundown.so libsundown.so.1 sundown smartypants
+	rm -f *.so *.so.1
 	rm -rf $(DEPDIR)
 
 

@@ -23,7 +23,7 @@
 	    format/md))
 
 
-(define sundown-lib (dynamic-link "libsundown.so"))
+(define sundown-lib (dynamic-link (format #f "~a/sundown/libsundown-guile.so" (%site-dir))))
 (dynamic-call "init_markdown" sundown-lib)
 
 (define* (md str . rest)
