@@ -11,7 +11,16 @@ The source for the Sundown shared library and the Sundown-guile package are both
 
 Use the included Makefile to perform a site installation. You may need to specify the location of your Guile header files.
 
-The guile package, including the libsundown-guile shared library, will be installed in the proper guile site directory.
+Installation instructions:
+
+    ~ $ git clone https://github.com/greghull/sundown-guile
+    ~ $ cd sundown-guile/
+    ~/sundown-guile $ make
+    ~/sundown-guile $ sudo make install
+
+The guile package, including the libsundown-guile shared library, will be installed in the proper guile site directory.  On my machine for example, everything installs to:
+
+    /usr/local/Cellar/guile/2.0.11_1/share/guile/site/2.0/sundown
 
 Usage
 ------
